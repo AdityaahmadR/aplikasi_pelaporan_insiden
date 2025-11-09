@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F2F2F2"
+    tools:context=".edukasiTab">
+
+    <!-- Content Area -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginBottom="?attr/actionBarSize"> <!-- Menyisakan ruang untuk BottomAppBar -->
+
+        <!-- Header -->
+        <LinearLayout
+            android:id="@+id/header_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/holo_red_dark"
+            android:orientation="vertical"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="16dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:layout_marginBottom="1dp">
+
+                <ImageView
+                    android:id="@+id/logo_kecil"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_marginEnd="8dp"
+                    android:src="@drawable/logo_kecil" />
+
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/search_bar"
+                android:layout_width="370dp"
+                android:layout_height="40dp"
+                android:background="@drawable/search_bar_background"
+                android:drawableEnd="@android:drawable/ic_menu_search"
+                android:drawablePadding="10dp"
+                android:hint="Search"
+                android:padding="10dp" />
+
+        </LinearLayout>
+
+        <include
+            android:id="@+id/notification_popup"
+            layout="@layout/notification_popup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+
+        <!-- Main Content -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/edukasi_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="8dp"
+                android:visibility="gone"
+                tools:listitem="@layout/item_edukasi" />
+
+            <TextView
+                android:id="@+id/no_video_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Video belum ada"
+                android:textSize="18sp"
+                android:visibility="visible" />
+
+        </FrameLayout>
+    </LinearLayout>
+
+    <!-- Bottom App Bar dengan FAB -->
+    <com.google.android.material.bottomappbar.BottomAppBar
+        android:id="@+id/bottom_app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        app:fabAlignmentMode="center"
+        app:fabCradleMargin="10dp"
+        app:fabCradleRoundedCornerRadius="20dp">
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_navigation_view"
+            style="@style/Widget.App.BottomNavigationView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:background="@android:color/transparent"
+            app:itemIconTint="@color/bottom_nav_item_tint"
+            app:itemTextColor="@color/bottom_nav_item_tint"
+            app:labelVisibilityMode="labeled"
+            app:menu="@menu/bottom_navigation_menu"
+            tools:checkedButton="@id/navigation_edukasi" />
+
+    </com.google.android.material.bottomappbar.BottomAppBar>
+
+    <ImageButton
+        android:id="@+id/fab"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="Panic Button"
+        android:scaleType="fitCenter"
+        android:src="@drawable/panic_button"
+        app:layout_anchor="@id/bottom_app_bar"
+        app:layout_anchorGravity="center" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

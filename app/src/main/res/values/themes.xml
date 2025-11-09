@@ -1,0 +1,25 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.AplikasiPelaporanInsiden" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:statusBarColor">@color/red</item>
+    </style>
+
+    <style name="Theme.AplikasiPelaporanInsiden" parent="Base.Theme.AplikasiPelaporanInsiden" />
+
+    <style name="Theme.AplikasiPelaporanInsiden.Splash" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:windowBackground">@android:color/white</item>
+    </style>
+
+    <!-- Custom Style for BottomNavigationView -->
+    <style name="Widget.App.BottomNavigationView" parent="Widget.MaterialComponents.BottomNavigationView">
+        <item name="itemIconSize">40dp</item>
+    </style>
+
+    <style name="Widget.App.FloatingActionButton" parent="Widget.MaterialComponents.FloatingActionButton">
+        <item name="backgroundTint">@android:color/transparent</item>
+        <item name="elevation">0dp</item>
+    </style>
+</resources>
