@@ -12,6 +12,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AplikasiPelaporanInsiden">
         <activity
+            android:name=".AdminLaporanManual"
+            android:exported="false" />
+        <activity
+            android:name=".AdminTampilanLaporanManual"
+            android:exported="false" />
+        <activity
+            android:name=".AdminTampilanAwal"
+            android:exported="false" />
+        <activity
             android:name=".Main3"
             android:exported="false" />
         <activity
