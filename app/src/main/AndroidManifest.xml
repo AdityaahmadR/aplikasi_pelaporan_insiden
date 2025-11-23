@@ -12,7 +12,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AplikasiPelaporanInsiden">
         <activity
-            android:name=".AdminLaporanManual"
+            android:name=".UploadVideo"
+            android:exported="false" />
+        <activity
+            android:name=".AdminTampilanHalamanVideoPreview"
+            android:exported="false" />
+        <activity
+            android:name=".AdminTampilanHalamanVideo"
+            android:exported="false" />
+        <activity
+            android:name=".AdminTampilanLaporanManualLanjutan"
+            android:exported="false" />
+        <activity
+            android:name=".AdminDatabasePengguna"
+            android:exported="false" />
+        <activity
+            android:name=".AdminTampilanLaporanDarurat"
             android:exported="false" />
         <activity
             android:name=".AdminTampilanLaporanManual"

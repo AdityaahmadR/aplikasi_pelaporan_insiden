@@ -93,7 +93,6 @@
                 android:textStyle="bold"
                 android:textColor="#212121"/>
         </LinearLayout>
-
     </LinearLayout>
 
     <TextView
@@ -102,7 +101,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:text="Laporan Manual"
+        android:text="Laporan Darurat"
         android:textColor="#000000"
         android:textSize="18sp"
         android:textStyle="bold"
@@ -144,10 +143,9 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:clipToPadding="false"
-        android:paddingBottom="8dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/item_admin_laporan_manual"
-        tools:itemCount="3"
+        tools:itemCount="2"
         app:layout_constraintBottom_toTopOf="@+id/paginationContainer"
         app:layout_constraintTop_toBottomOf="@+id/dividerLine" />
 
