@@ -69,7 +69,7 @@
                             android:id="@+id/logo_image"
                             android:layout_width="40dp"
                             android:layout_height="40dp"
-                            android:src="@drawable/logo" />
+                            android:src="@drawable/logo_kecil" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -116,7 +116,7 @@
                             android:layout_width="100dp"
                             android:layout_height="100dp"
                             android:background="@drawable/home_action_button_background"
-                            android:drawableTop="@drawable/mail_24dp_000000_fill0_wght400_grad0_opsz24__2_"
+                            android:drawableTop="@drawable/mail_24dp_000000_fill0_wght400_grad0_opsz24__1_"
                             android:gravity="center"
                             android:padding="8dp"
                             android:text="Pesan Notifikasi" />
@@ -177,7 +177,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
                         android:text="18 menit yang lalu"
-                        android:textSize="4pt" />
+                        android:textSize="12sp" />
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -247,7 +247,7 @@
         android:layout_height="70dp"
         android:layout_gravity="center_horizontal"
         android:background="@android:color/transparent"
-        android.contentDescription="@string/todo"
+        android:contentDescription="@string/panic_button"
         android:scaleType="fitCenter"
         android:src="@drawable/panic_button"
         android:translationY="35dp"

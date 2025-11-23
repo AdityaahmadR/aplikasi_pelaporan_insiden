@@ -7,15 +7,13 @@
     <string name="belum_punya_akun">Belum Punya akun?</string>
     <string name="daftar">Daftar</string>
     <string name="nama_lengkap">Nama Lengkap</string>
-    <string name="todo">TODO</string>
     <string name="home">Home</string>
     <string name="edukasi">Edukasi</string>
     <string name="histori">Histori</string>
     <string name="profil">Profil</string>
-    <string name="email2">Email</string>
-    <string name="password2">Password</string>
     <string name="konfirmasi_password">Konfirmasi Password</string>
     <string name="daftar_sekarang">Daftar Sekarang</string>
     <string name="sudah_punya_akun">Sudah Punya akun?</string>
     <string name="masuk">Masuk</string>
+    <string name="panic_button">Panic Button</string>
 </resources>

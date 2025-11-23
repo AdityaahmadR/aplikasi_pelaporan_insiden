@@ -12,14 +12,35 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AplikasiPelaporanInsiden">
         <activity
-            android:name=".AdminLaporanManual"
+            android:name=".UploadVideo"
+            android:exported="false" />
+        <activity
+            android:name=".AdminTampilanHalamanVideoPreview"
+            android:exported="false" />
+        <activity
+            android:name=".AdminTampilanHalamanVideo"
+            android:exported="false" />
+        <activity
+            android:name=".AdminTampilanLaporanManualLanjutan"
+            android:exported="false" />
+        <activity
+            android:name=".AdminDatabasePengguna"
+            android:exported="false" />
+        <activity
+            android:name=".AdminTampilanLaporanDarurat"
             android:exported="false" />
         <activity
             android:name=".AdminTampilanLaporanManual"
             android:exported="false" />
         <activity
             android:name=".AdminTampilanAwal"
-            android:exported="false" />
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".Main3"
             android:exported="false" />
@@ -47,16 +68,6 @@
         <activity
             android:name=".Register"
             android:exported="false" />
-        <activity
-            android:name=".Main2"
-            android:exported="true"
-            android:theme="@style/Theme.AplikasiPelaporanInsiden.Splash">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
         <activity
             android:name=".MainActivity"
             android:exported="true" />
