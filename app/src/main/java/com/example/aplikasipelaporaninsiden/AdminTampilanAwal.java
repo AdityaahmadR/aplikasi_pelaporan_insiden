@@ -1,6 +1,9 @@
-package com.example.aplikasipelaporaninsiden; // Pastikan package ini sesuai
+package com.example.aplikasipelaporaninsiden;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class AdminTampilanAwal extends AppCompatActivity {
@@ -8,8 +11,15 @@ public class AdminTampilanAwal extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        // Kita cukup panggil layout XML Login yang sudah jadi tadi
         setContentView(R.layout.activity_admin_tampilan_awal);
+
+        Button btnLogin = findViewById(R.id.btnLogin);
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AdminTampilanAwal.this, AdminTampilanLaporanManual.class);
+                startActivity(intent);
+            }
+        });
     }
 }
