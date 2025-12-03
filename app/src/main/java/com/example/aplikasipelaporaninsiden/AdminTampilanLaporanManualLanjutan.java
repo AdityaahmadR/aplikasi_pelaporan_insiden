@@ -9,5 +9,8 @@ public class AdminTampilanLaporanManualLanjutan extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_tampilan_laporan_manual_lanjutan);
+
+        // Since this is a continuation of Laporan Manual, we'll highlight the same button.
+        SidebarHelper.setupSidebar(this, R.id.btnLaporanManual);
     }
 }
