@@ -1,8 +1,11 @@
 package com.example.aplikasipelaporaninsiden;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -18,11 +21,20 @@ public class AdminDatabasePengguna extends AppCompatActivity {
 
         drawerLayout = findViewById(R.id.drawer_layout);
         ImageView btnSidebar = findViewById(R.id.btnSidebar);
+        LinearLayout btnUpload = findViewById(R.id.btnUpload);
 
         btnSidebar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 drawerLayout.openDrawer(GravityCompat.START);
+            }
+        });
+
+        btnUpload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AdminDatabasePengguna.this, AdminTampilanHalamanVideo.class);
+                startActivity(intent);
             }
         });
 
