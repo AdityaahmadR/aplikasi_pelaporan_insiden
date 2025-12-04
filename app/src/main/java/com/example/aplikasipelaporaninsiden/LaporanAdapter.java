@@ -3,10 +3,14 @@ package com.example.aplikasipelaporaninsiden;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
@@ -32,7 +36,8 @@ public class LaporanAdapter extends RecyclerView.Adapter<LaporanAdapter.LaporanV
         Laporan laporan = laporanList.get(position);
         holder.tvJudul.setText(laporan.getJudul());
         holder.tvDeskripsi.setText(laporan.getDeskripsi());
-        holder.tvStatus.setText(laporan.getStatus());
+
+        holder.bind(laporan);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,6 +46,29 @@ public class LaporanAdapter extends RecyclerView.Adapter<LaporanAdapter.LaporanV
                 context.startActivity(intent);
             }
         });
+
+        holder.cardStatus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showStatusMenu(v, holder, laporan);
+            }
+        });
+    }
+
+    private void showStatusMenu(View view, LaporanViewHolder holder, Laporan laporan) {
+        PopupMenu popup = new PopupMenu(context, view);
+        popup.getMenuInflater().inflate(R.menu.status_menu, popup.getMenu());
+
+        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            public boolean onMenuItemClick(MenuItem item) {
+                String newStatus = item.getTitle().toString();
+                laporan.setStatus(newStatus);
+                holder.bind(laporan); // Re-bind the view to update color and text
+                return true;
+            }
+        });
+
+        popup.show();
     }
 
     @Override
@@ -50,12 +78,32 @@ public class LaporanAdapter extends RecyclerView.Adapter<LaporanAdapter.LaporanV
 
     public static class LaporanViewHolder extends RecyclerView.ViewHolder {
         TextView tvJudul, tvDeskripsi, tvStatus;
+        CardView cardStatus;
 
         public LaporanViewHolder(@NonNull View itemView) {
             super(itemView);
             tvJudul = itemView.findViewById(R.id.tvJudul);
             tvDeskripsi = itemView.findViewById(R.id.tvDeskripsi);
             tvStatus = itemView.findViewById(R.id.tvStatus);
+            cardStatus = itemView.findViewById(R.id.cardStatus);
+        }
+
+        public void bind(Laporan laporan) {
+            tvStatus.setText(laporan.getStatus());
+            int colorResId;
+            switch (laporan.getStatus()) {
+                case "Sedang Berlangsung":
+                    colorResId = R.color.status_sedang_berlangsung;
+                    break;
+                case "Selesai":
+                    colorResId = R.color.status_selesai;
+                    break;
+                case "Laporan Masuk":
+                default:
+                    colorResId = R.color.status_laporan_masuk;
+                    break;
+            }
+            cardStatus.setCardBackgroundColor(ContextCompat.getColor(itemView.getContext(), colorResId));
         }
     }
 }

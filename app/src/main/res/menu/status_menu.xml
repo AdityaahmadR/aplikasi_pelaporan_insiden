@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/status_laporan_masuk"
+        android:title="Laporan Masuk" />
+    <item
+        android:id="@+id/status_sedang_berlangsung"
+        android:title="Sedang Berlangsung" />
+    <item
+        android:id="@+id/status_selesai"
+        android:title="Selesai" />
+</menu>

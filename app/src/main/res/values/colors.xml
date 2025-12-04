@@ -4,4 +4,9 @@
     <color name="white">#FFFFFFFF</color>
     <color name="red">#D32F2F</color>
     <color name="green">#4CAF50</color>
+
+    <!-- Status Colors -->
+    <color name="status_laporan_masuk">#9E9E9E</color> <!-- Abu-abu -->
+    <color name="status_sedang_berlangsung">#FFC107</color> <!-- Kuning -->
+    <color name="status_selesai">#4CAF50</color>      <!-- Hijau -->
 </resources>
