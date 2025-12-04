@@ -102,7 +102,8 @@ public class AdminTampilanLaporanManual extends AppCompatActivity {
     private void setupPagination() {
         totalPages = (int) Math.ceil((double) allLaporanList.size() / itemsPerPage);
         paginatedLaporanList = new ArrayList<>();
-        laporanAdapter = new LaporanAdapter(this, paginatedLaporanList);
+        // Enable navigation for this page
+        laporanAdapter = new LaporanAdapter(this, paginatedLaporanList, true);
         rvLaporan.setAdapter(laporanAdapter);
     }
 

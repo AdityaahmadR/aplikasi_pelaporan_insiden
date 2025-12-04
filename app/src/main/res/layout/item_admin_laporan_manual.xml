@@ -67,7 +67,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginEnd="8dp"
             android:ellipsize="end"
-            android:maxLines="4"
+            android:maxLines="3"
             android:lineSpacingMultiplier="1.1"
             tools:text="Tolong pak, hewan peliharaan saya terjebak di Ruang loteng rumah saya..."
             android:textColor="#757575"

@@ -18,10 +18,12 @@ public class LaporanAdapter extends RecyclerView.Adapter<LaporanAdapter.LaporanV
 
     private List<Laporan> laporanList;
     private Context context;
+    private boolean isNavigationEnabled;
 
-    public LaporanAdapter(Context context, List<Laporan> laporanList) {
+    public LaporanAdapter(Context context, List<Laporan> laporanList, boolean isNavigationEnabled) {
         this.context = context;
         this.laporanList = laporanList;
+        this.isNavigationEnabled = isNavigationEnabled;
     }
 
     @NonNull
@@ -39,13 +41,17 @@ public class LaporanAdapter extends RecyclerView.Adapter<LaporanAdapter.LaporanV
 
         holder.bind(laporan);
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, AdminTampilanLaporanManualLanjutan.class);
-                context.startActivity(intent);
-            }
-        });
+        if (isNavigationEnabled) {
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, AdminTampilanLaporanManualLanjutan.class);
+                    context.startActivity(intent);
+                }
+            });
+        } else {
+            holder.itemView.setOnClickListener(null);
+        }
 
         holder.cardStatus.setOnClickListener(new View.OnClickListener() {
             @Override
