@@ -5,14 +5,20 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AdminTampilanLaporanManual extends AppCompatActivity {
 
     private DrawerLayout drawerLayout;
+    private RecyclerView rvLaporan;
+    private LaporanAdapter laporanAdapter;
+    private List<Laporan> laporanList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +45,20 @@ public class AdminTampilanLaporanManual extends AppCompatActivity {
         });
 
         SidebarHelper.setupSidebar(this, R.id.btnLaporanManual);
+
+        // Setup RecyclerView
+        rvLaporan = findViewById(R.id.rvLaporan);
+        rvLaporan.setLayoutManager(new LinearLayoutManager(this));
+
+        // Create dummy data
+        laporanList = new ArrayList<>();
+        laporanList.add(new Laporan("Evakuasi Hewan", "Tolong pak, hewan peliharaan saya terjebak di Ruang loteng rumah saya...", "Laporan Masuk"));
+        laporanList.add(new Laporan("Pohon Tumbang", "Pohon besar di depan rumah tumbang dan menutupi jalan utama.", "Laporan Masuk"));
+        laporanList.add(new Laporan("Kebakaran Ringan", "Terjadi kebakaran kecil di dapur akibat korsleting listrik.", "Laporan Masuk"));
+
+        // Set up the adapter
+        laporanAdapter = new LaporanAdapter(this, laporanList);
+        rvLaporan.setAdapter(laporanAdapter);
     }
 
     @Override
