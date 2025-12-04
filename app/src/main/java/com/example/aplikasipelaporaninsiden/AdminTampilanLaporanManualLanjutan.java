@@ -22,6 +22,7 @@ public class AdminTampilanLaporanManualLanjutan extends AppCompatActivity {
         drawerLayout = findViewById(R.id.drawer_layout);
         ImageView btnSidebar = findViewById(R.id.btnSidebar);
         LinearLayout btnUpload = findViewById(R.id.btnUpload);
+        ImageView ivBack = findViewById(R.id.ivBack);
 
         btnSidebar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -35,6 +36,15 @@ public class AdminTampilanLaporanManualLanjutan extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(AdminTampilanLaporanManualLanjutan.this, AdminTampilanHalamanVideo.class);
                 startActivity(intent);
+            }
+        });
+
+        ivBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // This will finish the current activity and go back to the previous one in the stack,
+                // which is AdminTampilanLaporanManual.
+                finish();
             }
         });
 
