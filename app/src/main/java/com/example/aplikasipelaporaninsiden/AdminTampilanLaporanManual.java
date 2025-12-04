@@ -82,21 +82,11 @@ public class AdminTampilanLaporanManual extends AppCompatActivity {
 
     private void createDummyData() {
         allLaporanList = new ArrayList<>();
-        allLaporanList.add(new Laporan("Evakuasi Hewan", "Tolong pak, hewan peliharaan saya terjebak di Ruang loteng rumah saya...", "Laporan Masuk"));
-        allLaporanList.add(new Laporan("Pohon Tumbang", "Pohon besar di depan rumah tumbang dan menutupi jalan utama.", "Laporan Masuk"));
-        allLaporanList.add(new Laporan("Kebakaran Ringan", "Terjadi kebakaran kecil di dapur akibat korsleting listrik.", "Laporan Masuk"));
-        allLaporanList.add(new Laporan("Banjir Lokal", "Jalan di depan kompleks tergenang air setinggi 30cm.", "Laporan Masuk"));
-        allLaporanList.add(new Laporan("Orang Hilang", "Anak tetangga tidak pulang sejak kemarin sore.", "Laporan Masuk"));
-        allLaporanList.add(new Laporan("Kecelakaan Lalu Lintas", "Terjadi tabrakan antara motor dan mobil di perempatan.", "Laporan Masuk"));
-        allLaporanList.add(new Laporan("Gangguan Keamanan", "Ada sekelompok orang mencurigakan berkumpul di taman.", "Laporan Masuk"));
-        allLaporanList.add(new Laporan("Fasilitas Umum Rusak", "Lampu jalan di RT 05 padam total sudah 3 hari.", "Laporan Masuk"));
-        allLaporanList.add(new Laporan("Penemuan Benda Asing", "Ditemukan tas tanpa pemilik di halte bus.", "Laporan Masuk"));
-        allLaporanList.add(new Laporan("Evakuasi Sarang Tawon", "Sarang tawon besar dan berbahaya di pohon mangga.", "Laporan Masuk"));
-        allLaporanList.add(new Laporan("Jalan Rusak", "Terdapat lubang besar yang membahayakan di tengah jalan.", "Laporan Masuk"));
-        allLaporanList.add(new Laporan("Kebocoran Pipa PDAM", "Air bersih mengalir deras dari pipa yang bocor di trotoar.", "Laporan Masuk"));
-        allLaporanList.add(new Laporan("Hewan Liar Masuk Pemukiman", "Seekor ular terlihat masuk ke pekarangan rumah warga.", "Laporan Masuk"));
-        allLaporanList.add(new Laporan("Kerusakan Jembatan", "Jembatan kayu penghubung antar desa mulai rapuh.", "Laporan Masuk"));
-        allLaporanList.add(new Laporan("Tawuran Antar Warga", "Terjadi perkelahian massal di lapangan desa.", "Laporan Masuk"));
+        allLaporanList.add(new Laporan("Evakuasi Hewan", "Tolong pak, hewan peliharaan saya terjebak di Ruang loteng rumah saya, dia tidak bisa keluar dan terjepit", "Laporan Masuk", "Sabtu, 25 Oktober 2025 (1 Menit lalu)", "Adityaa112", "nime7@gmail.com", R.drawable.dummy_image_1));
+        allLaporanList.add(new Laporan("Pohon Tumbang", "Pohon besar di depan rumah tumbang dan menutupi jalan utama.", "Laporan Masuk", "Jumat, 24 Oktober 2025 (1 Hari lalu)", "User_Banjir", "banjir@example.com", R.drawable.dummy_image_2));
+        allLaporanList.add(new Laporan("Kebakaran Ringan", "Terjadi kebakaran kecil di dapur akibat korsleting listrik.", "Sedang Berlangsung", "Kamis, 23 Oktober 2025 (2 Hari lalu)", "SaksiMata", "saksi@example.com", R.drawable.dummy_image_1));
+        allLaporanList.add(new Laporan("Banjir Lokal", "Jalan di depan kompleks tergenang air setinggi 30cm.", "Selesai", "Rabu, 22 Oktober 2025 (3 Hari lalu)", "Korban_Banjir", "korban@example.com", R.drawable.dummy_image_2));
+        // Add more dummy data to fill pages
     }
 
     private void setupPagination() {

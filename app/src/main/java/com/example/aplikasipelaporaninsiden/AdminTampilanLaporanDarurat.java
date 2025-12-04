@@ -83,12 +83,12 @@ public class AdminTampilanLaporanDarurat extends AppCompatActivity {
     private void createDummyData() {
         allLaporanList = new ArrayList<>();
         // Dummy data for Laporan Darurat (you can customize this)
-        allLaporanList.add(new Laporan("Serangan Jantung", "Seorang pria paruh baya mengeluh nyeri dada hebat.", "Laporan Masuk"));
-        allLaporanList.add(new Laporan("Kebakaran Hebat", "Api melalap sebuah ruko di pusat kota.", "Laporan Masuk"));
-        allLaporanList.add(new Laporan("Kecelakaan Fatal", "Kecelakaan beruntun di jalan tol, ada korban jiwa.", "Laporan Masuk"));
-        allLaporanList.add(new Laporan("Bencana Alam: Gempa", "Gempa bumi skala 6.2 mengguncang wilayah.", "Laporan Masuk"));
-        allLaporanList.add(new Laporan("Tindak Kriminal Bersenjata", "Perampokan di sebuah bank, pelaku membawa senjata api.", "Laporan Masuk"));
-        allLaporanList.add(new Laporan("Orang Tenggelam", "Seorang anak dilaporkan tenggelam di sungai.", "Laporan Masuk"));
+        allLaporanList.add(new Laporan("Serangan Jantung", "Seorang pria paruh baya mengeluh nyeri dada hebat.", "Laporan Masuk", "Senin, 27 Okt 2025 (1 menit lalu)", "Keluarga Pasien", "keluarga@email.com", 0));
+        allLaporanList.add(new Laporan("Kebakaran Hebat", "Api melalap sebuah ruko di pusat kota.", "Laporan Masuk", "Senin, 27 Okt 2025 (5 menit lalu)", "Saksi Mata", "saksi_kebakaran@email.com", R.drawable.dummy_image_1));
+        allLaporanList.add(new Laporan("Kecelakaan Fatal", "Kecelakaan beruntun di jalan tol, ada korban jiwa.", "Laporan Masuk", "Minggu, 26 Okt 2025 (1 jam lalu)", "Polisi Jalan Raya", "pjr@polisi.go.id", R.drawable.dummy_image_2));
+        allLaporanList.add(new Laporan("Bencana Alam: Gempa", "Gempa bumi skala 6.2 mengguncang wilayah.", "Laporan Masuk", "Minggu, 26 Okt 2025 (3 jam lalu)", "BMKG", "info@bmkg.go.id", 0));
+        allLaporanList.add(new Laporan("Tindak Kriminal Bersenjata", "Perampokan di sebuah bank, pelaku membawa senjata api.", "Laporan Masuk", "Sabtu, 25 Okt 2025 (1 hari lalu)", "Satpam Bank", "security@bank.com", 0));
+        allLaporanList.add(new Laporan("Orang Tenggelam", "Seorang anak dilaporkan tenggelam di sungai.", "Laporan Masuk", "Sabtu, 25 Okt 2025 (1 hari lalu)", "Warga Sekitar", "warga@email.com", R.drawable.dummy_image_1));
     }
 
     private void setupPagination() {

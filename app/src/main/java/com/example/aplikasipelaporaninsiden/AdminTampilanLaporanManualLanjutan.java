@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-
+import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -13,6 +13,9 @@ import androidx.drawerlayout.widget.DrawerLayout;
 public class AdminTampilanLaporanManualLanjutan extends AppCompatActivity {
 
     private DrawerLayout drawerLayout;
+
+    private TextView tvDateTime, tvJenisLaporan, tvPelaporNama, tvPelaporEmail, tvDeskripsi;
+    private ImageView ivLaporanImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,32 +27,45 @@ public class AdminTampilanLaporanManualLanjutan extends AppCompatActivity {
         LinearLayout btnUpload = findViewById(R.id.btnUpload);
         ImageView ivBack = findViewById(R.id.ivBack);
 
-        btnSidebar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                drawerLayout.openDrawer(GravityCompat.START);
-            }
+        // Initialize Views
+        tvDateTime = findViewById(R.id.tvDateTime);
+        tvJenisLaporan = findViewById(R.id.tvJenisLaporan);
+        tvPelaporNama = findViewById(R.id.tvPelaporNama);
+        tvPelaporEmail = findViewById(R.id.tvPelaporEmail);
+        tvDeskripsi = findViewById(R.id.tvDeskripsi);
+        ivLaporanImage = findViewById(R.id.ivLaporanImage);
+
+        btnSidebar.setOnClickListener(v -> drawerLayout.openDrawer(GravityCompat.START));
+
+        btnUpload.setOnClickListener(v -> {
+            Intent intent = new Intent(AdminTampilanLaporanManualLanjutan.this, AdminTampilanHalamanVideo.class);
+            startActivity(intent);
         });
 
-        btnUpload.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(AdminTampilanLaporanManualLanjutan.this, AdminTampilanHalamanVideo.class);
-                startActivity(intent);
-            }
-        });
+        ivBack.setOnClickListener(v -> finish());
 
-        ivBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // This will finish the current activity and go back to the previous one in the stack,
-                // which is AdminTampilanLaporanManual.
-                finish();
-            }
-        });
-
-        // Since this is a continuation of Laporan Manual, we'll highlight the same button.
         SidebarHelper.setupSidebar(this, R.id.btnLaporanManual);
+
+        // Get data from intent
+        Laporan laporan = (Laporan) getIntent().getSerializableExtra("LAPORAN_EXTRA");
+
+        // Populate views with data
+        if (laporan != null) {
+            tvDateTime.setText(laporan.getDateTime());
+            tvJenisLaporan.setText(laporan.getJudul());
+            tvPelaporNama.setText(laporan.getPelaporNama());
+            tvPelaporEmail.setText(laporan.getPelaporEmail());
+            tvDeskripsi.setText(laporan.getDeskripsi());
+
+            if (laporan.getImageResId() != 0) {
+                ivLaporanImage.setImageResource(laporan.getImageResId());
+                ivLaporanImage.setVisibility(View.VISIBLE);
+                findViewById(R.id.ivImagePlaceholder).setVisibility(View.GONE);
+            } else {
+                ivLaporanImage.setVisibility(View.GONE);
+                findViewById(R.id.ivImagePlaceholder).setVisibility(View.VISIBLE);
+            }
+        }
     }
 
     @Override

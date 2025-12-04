@@ -46,6 +46,7 @@ public class LaporanAdapter extends RecyclerView.Adapter<LaporanAdapter.LaporanV
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(context, AdminTampilanLaporanManualLanjutan.class);
+                    intent.putExtra("LAPORAN_EXTRA", laporan); // Pass the whole Laporan object
                     context.startActivity(intent);
                 }
             });
