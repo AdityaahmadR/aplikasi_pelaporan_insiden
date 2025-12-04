@@ -5,14 +5,29 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-
+import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AdminDatabasePengguna extends AppCompatActivity {
 
     private DrawerLayout drawerLayout;
+    private RecyclerView rvDatabase;
+    private PenggunaAdapter penggunaAdapter;
+    private List<Pengguna> allPenggunaList;
+    private List<Pengguna> paginatedPenggunaList;
+
+    private int currentPage = 0;
+    private int itemsPerPage = 10; // Show more items for user list
+    private int totalPages;
+
+    private ImageView ivPrevPage, ivNextPage;
+    private TextView tvPageNumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,22 +38,83 @@ public class AdminDatabasePengguna extends AppCompatActivity {
         ImageView btnSidebar = findViewById(R.id.btnSidebar);
         LinearLayout btnUpload = findViewById(R.id.btnUpload);
 
-        btnSidebar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                drawerLayout.openDrawer(GravityCompat.START);
-            }
-        });
+        ivPrevPage = findViewById(R.id.ivPrevPage);
+        ivNextPage = findViewById(R.id.ivNextPage);
+        tvPageNumber = findViewById(R.id.tvPageNumber);
 
-        btnUpload.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(AdminDatabasePengguna.this, AdminTampilanHalamanVideo.class);
-                startActivity(intent);
-            }
+        btnSidebar.setOnClickListener(v -> drawerLayout.openDrawer(GravityCompat.START));
+
+        btnUpload.setOnClickListener(v -> {
+            Intent intent = new Intent(AdminDatabasePengguna.this, AdminTampilanHalamanVideo.class);
+            startActivity(intent);
         });
 
         SidebarHelper.setupSidebar(this, R.id.btnDatabase);
+
+        // Setup RecyclerView
+        rvDatabase = findViewById(R.id.rvDatabase);
+        rvDatabase.setLayoutManager(new LinearLayoutManager(this));
+        rvDatabase.setNestedScrollingEnabled(false); // Important for NestedScrollView
+
+        // Create dummy data
+        createDummyData();
+
+        // Pagination logic
+        setupPagination();
+        updateRecyclerView();
+        updatePaginationControls();
+
+        ivPrevPage.setOnClickListener(v -> {
+            if (currentPage > 0) {
+                currentPage--;
+                updateRecyclerView();
+                updatePaginationControls();
+            }
+        });
+
+        ivNextPage.setOnClickListener(v -> {
+            if (currentPage < totalPages - 1) {
+                currentPage++;
+                updateRecyclerView();
+                updatePaginationControls();
+            }
+        });
+    }
+
+    private void createDummyData() {
+        allPenggunaList = new ArrayList<>();
+        for (int i = 1; i <= 25; i++) {
+            allPenggunaList.add(new Pengguna("User Name " + i, "user" + i + "@example.com", (i % 5) + " Pelaporan"));
+        }
+    }
+
+    private void setupPagination() {
+        totalPages = (int) Math.ceil((double) allPenggunaList.size() / itemsPerPage);
+        paginatedPenggunaList = new ArrayList<>();
+        penggunaAdapter = new PenggunaAdapter(this, paginatedPenggunaList);
+        rvDatabase.setAdapter(penggunaAdapter);
+    }
+
+    private void updateRecyclerView() {
+        paginatedPenggunaList.clear();
+        int startItem = currentPage * itemsPerPage;
+        int endItem = Math.min(startItem + itemsPerPage, allPenggunaList.size());
+
+        for (int i = startItem; i < endItem; i++) {
+            paginatedPenggunaList.add(allPenggunaList.get(i));
+        }
+
+        penggunaAdapter.notifyDataSetChanged();
+    }
+
+    private void updatePaginationControls() {
+        tvPageNumber.setText((currentPage + 1) + "/" + totalPages);
+
+        ivPrevPage.setEnabled(currentPage > 0);
+        ivPrevPage.setAlpha(currentPage > 0 ? 1.0f : 0.5f);
+
+        ivNextPage.setEnabled(currentPage < totalPages - 1);
+        ivNextPage.setAlpha(currentPage < totalPages - 1 ? 1.0f : 0.5f);
     }
 
     @Override
