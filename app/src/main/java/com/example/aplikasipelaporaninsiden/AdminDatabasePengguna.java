@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AdminDatabasePengguna extends AppCompatActivity {
+public class AdminDatabasePengguna extends AppCompatActivity implements PenggunaAdapter.OnDeleteClickListener {
 
     private DrawerLayout drawerLayout;
     private RecyclerView rvDatabase;
@@ -23,11 +23,12 @@ public class AdminDatabasePengguna extends AppCompatActivity {
     private List<Pengguna> paginatedPenggunaList;
 
     private int currentPage = 0;
-    private int itemsPerPage = 10; // Show more items for user list
+    private int itemsPerPage = 5; // Set item limit to 5 per page
     private int totalPages;
 
     private ImageView ivPrevPage, ivNextPage;
     private TextView tvPageNumber;
+    private LinearLayout layoutTambahUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +42,7 @@ public class AdminDatabasePengguna extends AppCompatActivity {
         ivPrevPage = findViewById(R.id.ivPrevPage);
         ivNextPage = findViewById(R.id.ivNextPage);
         tvPageNumber = findViewById(R.id.tvPageNumber);
+        layoutTambahUser = findViewById(R.id.layoutTambahUser);
 
         btnSidebar.setOnClickListener(v -> drawerLayout.openDrawer(GravityCompat.START));
 
@@ -91,7 +93,7 @@ public class AdminDatabasePengguna extends AppCompatActivity {
     private void setupPagination() {
         totalPages = (int) Math.ceil((double) allPenggunaList.size() / itemsPerPage);
         paginatedPenggunaList = new ArrayList<>();
-        penggunaAdapter = new PenggunaAdapter(this, paginatedPenggunaList);
+        penggunaAdapter = new PenggunaAdapter(this, paginatedPenggunaList, this);
         rvDatabase.setAdapter(penggunaAdapter);
     }
 
@@ -108,6 +110,13 @@ public class AdminDatabasePengguna extends AppCompatActivity {
     }
 
     private void updatePaginationControls() {
+        // Recalculate total pages in case of deletion
+        totalPages = (int) Math.ceil((double) allPenggunaList.size() / itemsPerPage);
+        if (totalPages == 0) totalPages = 1; // Avoid 0/0 display
+        if (currentPage >= totalPages) {
+            currentPage = totalPages - 1;
+        }
+
         tvPageNumber.setText((currentPage + 1) + "/" + totalPages);
 
         ivPrevPage.setEnabled(currentPage > 0);
@@ -115,6 +124,24 @@ public class AdminDatabasePengguna extends AppCompatActivity {
 
         ivNextPage.setEnabled(currentPage < totalPages - 1);
         ivNextPage.setAlpha(currentPage < totalPages - 1 ? 1.0f : 0.5f);
+
+        // Show 'Tambah User' button only on the last page
+        if (currentPage == totalPages - 1) {
+            layoutTambahUser.setVisibility(View.VISIBLE);
+        } else {
+            layoutTambahUser.setVisibility(View.GONE);
+        }
+         // Also handle case where there are no items
+        if (allPenggunaList.isEmpty()) {
+            layoutTambahUser.setVisibility(View.VISIBLE);
+        }
+    }
+
+    @Override
+    public void onDeleteClick(Pengguna pengguna) {
+        allPenggunaList.remove(pengguna);
+        updatePaginationControls(); // Update page counts first
+        updateRecyclerView();     // Then refresh the view
     }
 
     @Override
