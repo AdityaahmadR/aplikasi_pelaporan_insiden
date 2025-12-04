@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -66,14 +67,22 @@ public class AdminTampilanLaporanManualLanjutan extends AppCompatActivity {
                 findViewById(R.id.ivImagePlaceholder).setVisibility(View.VISIBLE);
             }
         }
+
+        // Handle back press to close drawer
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+                    drawerLayout.closeDrawer(GravityCompat.START);
+                } else {
+                    if (isEnabled()) {
+                        setEnabled(false);
+                        getOnBackPressedDispatcher().onBackPressed();
+                    }
+                }
+            }
+        });
     }
 
-    @Override
-    public void onBackPressed() {
-        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
-            drawerLayout.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
-    }
+    // The old onBackPressed method is now removed and replaced by the OnBackPressedDispatcher logic above.
 }

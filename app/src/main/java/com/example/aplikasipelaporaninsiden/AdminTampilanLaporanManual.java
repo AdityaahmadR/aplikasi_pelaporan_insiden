@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -78,6 +79,21 @@ public class AdminTampilanLaporanManual extends AppCompatActivity {
                 updatePaginationControls();
             }
         });
+
+        // Handle back press to close drawer
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+                    drawerLayout.closeDrawer(GravityCompat.START);
+                } else {
+                    if (isEnabled()) {
+                        setEnabled(false);
+                        getOnBackPressedDispatcher().onBackPressed();
+                    }
+                }
+            }
+        });
     }
 
     private void createDummyData() {
@@ -118,13 +134,6 @@ public class AdminTampilanLaporanManual extends AppCompatActivity {
         ivNextPage.setEnabled(currentPage < totalPages - 1);
         ivNextPage.setAlpha(currentPage < totalPages - 1 ? 1.0f : 0.5f);
     }
-
-    @Override
-    public void onBackPressed() {
-        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
-            drawerLayout.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
-    }
+    
+    // The old onBackPressed method is now removed and replaced by the OnBackPressedDispatcher logic above.
 }
